@@ -26,3 +26,21 @@ def test_basic_clustering_from_single_result_with_custom_exclusion_list():
     assert clustering.clustered_rows == [
         ((0, "b"), (1, "c"))
     ]
+
+
+def test_basic_clustering_from_single_result_with_custom_feature_info():
+    clustering = transform_result(
+        {((0, "a", "b"), (1, "a", "c"), 0.25)},
+        feature_info=[("id", "value"), ("id", "size")]
+    )
+
+    assert len(clustering.feature_info) == 2
+    actual_feature_info = list(
+        tuple(item.name for item in cluster)
+        for cluster in clustering.feature_info
+    )
+    assert actual_feature_info == [("id", "value"), ("id", "size")]
+    assert len(clustering.clustered_rows) == 1
+    assert clustering.clustered_rows == [
+        (("a", "b"), ("a", "c"))
+    ]
