@@ -1,11 +1,11 @@
 from abstractions.data_structures import Clustering, FeatureInfo
 
 
-def _exclude_columns(row: tuple, excluded: set[int]) -> tuple:
-    return tuple(item for index, item in enumerate(row) if index not in excluded)
+def _exclude_columns(row: list, excluded: set[int]) -> list:
+    return [item for index, item in enumerate(row) if index not in excluded]
 
 
-def _normalize_feature_info(info: list[tuple]) -> list[tuple]:
+def _normalize_feature_info(info: list[list]) -> list[list]:
     result = []
     if info is None:
         return result
@@ -16,22 +16,18 @@ def _normalize_feature_info(info: list[tuple]) -> list[tuple]:
             if not isinstance(feature, FeatureInfo):
                 added_feature = FeatureInfo(name=str(feature), ordinal=idx)
             added_cluster.append(added_feature)
-        result.append(tuple(added_cluster))
+        result.append(added_cluster)
     return result
 
 
 def ppjoin_result_to_cluster(
-    results: set[tuple[tuple, tuple, float]],
-    feature_info: list[tuple] = None,
-    exclude: list[int] = None
+    results: list[tuple[list, list, float]],
+    feature_info: list[list] = None,
 ) -> Clustering:
-    exclude = exclude or [0]
-    result = []
-    for cluster_a, cluster_b, _ in results:
-        x = _exclude_columns(cluster_a, set(exclude))
-        y = _exclude_columns(cluster_b, set(exclude))
-        result.append((x, y))
     return Clustering(
         feature_info=_normalize_feature_info(feature_info),
-        clustered_rows=result,
+        clustered_rows=[
+            [cluster_a, cluster_b]
+            for cluster_a, cluster_b, _ in results
+        ],
     )
