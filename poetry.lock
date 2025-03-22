@@ -127,14 +127,14 @@ polars = ">=1.25.2,<2.0.0"
 
 [[package]]
 name = "matchescu-reference-store"
-version = "0.3.1"
+version = "0.5.0"
 description = "Storage options for entity references"
 optional = false
 python-versions = "<4.0,>=3.12"
 groups = ["main"]
 files = [
-    {file = "matchescu_reference_store-0.3.1-py3-none-any.whl", hash = "sha256:2857123c76b47af40a7070772872551dd59a029a646350747144d16510c8cd67"},
-    {file = "matchescu_reference_store-0.3.1.tar.gz", hash = "sha256:22c0731df913b4d7d5c1ef4491ee255b407a0d013e3c4ce3a625688eae43fc3a"},
+    {file = "matchescu_reference_store-0.5.0-py3-none-any.whl", hash = "sha256:713f92fd834c7ac8a947be6ec7c1757fe4cde3c1b3abc474056be4023f9ec65a"},
+    {file = "matchescu_reference_store-0.5.0.tar.gz", hash = "sha256:8c15410444ffbe93edba69e4be8a9ae8d3416d952cc2118869ffbb700fc55aa8"},
 ]
 
 [package.dependencies]
@@ -578,4 +578,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "29dedb4178e9999c164e242320fcda83faa33ebd4436c7bfff060b69f06de7a8"
+content-hash = "51696357c4ecc232ec6fa431330b94ab1d91a02e7e037672a9b49f42d8adbd03"

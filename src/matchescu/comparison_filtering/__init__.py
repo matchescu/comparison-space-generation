@@ -1,8 +1,8 @@
 from matchescu.comparison_filtering._filters import (
     ComparisonFilter,
-    MultiSourceFilter,
+    is_cross_source_comparison,
     JaccardSimilarityFilter,
 )
 
 
-__all__ = ["ComparisonFilter", "MultiSourceFilter", "JaccardSimilarityFilter"]
+__all__ = ["ComparisonFilter", "is_cross_source_comparison", "JaccardSimilarityFilter"]

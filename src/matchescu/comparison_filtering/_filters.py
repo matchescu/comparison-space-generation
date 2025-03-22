@@ -12,10 +12,9 @@ class ComparisonFilter(metaclass=ABCMeta):
         pass
 
 
-class MultiSourceFilter(ComparisonFilter):
-    def __call__(self, *ref_ids: EntityReferenceIdentifier) -> bool:
-        sources = set(ref_id.source for ref_id in ref_ids)
-        return len(sources) > 1
+def is_cross_source_comparison(*ref_ids: EntityReferenceIdentifier) -> bool:
+    sources = set(ref_id.source for ref_id in ref_ids)
+    return len(sources) > 1
 
 
 class JaccardSimilarityFilter(ComparisonFilter):
