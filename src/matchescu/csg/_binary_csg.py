@@ -1,7 +1,7 @@
 import itertools
 from typing import Generator
 
-from matchescu.blocking import Blocker
+from matchescu.blocking import Blocker, Block
 from matchescu.comparison_filtering import ComparisonFilter
 from matchescu.reference_store.comparison_space import (
     BinaryComparisonSpace,
@@ -25,6 +25,14 @@ class BinaryComparisonSpaceGenerator:
         self._filters.append(cmp_filter)
         return self
 
+    @staticmethod
+    def __gen_candidate_pairs(x: Block) -> Generator[tuple, None, None]:
+        yield from x.candidate_pairs()
+
+    @staticmethod
+    def __gen_blocks(x: Blocker) -> Generator[Block, None, None]:
+        yield from x()
+
     def __get_candidate_pairs(
         self,
     ) -> Generator[
@@ -32,8 +40,8 @@ class BinaryComparisonSpaceGenerator:
     ]:
         yield from itertools.chain.from_iterable(
             map(
-                lambda x: x.candidate_pairs(),
-                itertools.chain.from_iterable(map(lambda x: x(), self._blockers)),
+                self.__gen_candidate_pairs,
+                itertools.chain.from_iterable(map(self.__gen_blocks, self._blockers)),
             )
         )
 
