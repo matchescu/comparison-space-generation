@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "comparison-space-generation"
+name = "matchescu-comparison-space-generation"
 version = "0.1.0"
 description = ""
 authors = ["Andrei Olar <andrei.olar@samlex.ro>"]
