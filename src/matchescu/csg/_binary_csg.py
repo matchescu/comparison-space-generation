@@ -7,7 +7,6 @@ from matchescu.reference_store.comparison_space import (
     BinaryComparisonSpace,
     InMemoryComparisonSpace,
 )
-from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReferenceIdentifier
 
 
@@ -18,6 +17,12 @@ class BinaryComparisonSpaceGenerator:
 
     def add_blocker(self, blocker: Blocker) -> "BinaryComparisonSpaceGenerator":
         self._blockers.append(blocker)
+        return self
+
+    def add_filter(
+        self, cmp_filter: ComparisonFilter
+    ) -> "BinaryComparisonSpaceGenerator":
+        self._filters.append(cmp_filter)
         return self
 
     def __get_candidate_pairs(
@@ -32,8 +37,14 @@ class BinaryComparisonSpaceGenerator:
             )
         )
 
+    def __matches_all_filters(self, ids: tuple) -> bool:
+        return all(map(lambda f: f(*ids), self._filters))
+
     def __call__(self) -> BinaryComparisonSpace:
         comparison_space = InMemoryComparisonSpace()
-        for left_id, right_id in self.__get_candidate_pairs():
+        candidate_generator = filter(
+            self.__matches_all_filters, self.__get_candidate_pairs()
+        )
+        for left_id, right_id in candidate_generator:
             comparison_space.put(left_id, right_id)
         return comparison_space

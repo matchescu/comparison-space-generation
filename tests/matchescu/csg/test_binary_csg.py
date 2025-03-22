@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, call
 import pytest
 
 from matchescu.blocking import Blocker, Block
+from matchescu.comparison_filtering import ComparisonFilter
 from matchescu.csg._binary_csg import BinaryComparisonSpaceGenerator
 from matchescu.references import EntityReference
 from matchescu.typing import EntityReferenceIdentifier
@@ -30,6 +31,17 @@ def _new_blocker(blocker_no=1, blocks=None):
 @pytest.fixture
 def blocker():
     return _new_blocker()
+
+
+def _new_filter(result):
+    mock = MagicMock(name="ComparisonFilter", spec=ComparisonFilter)
+    mock.return_value = result
+    return mock
+
+
+@pytest.fixture
+def cmp_filter(request):
+    return _new_filter(request.param if hasattr(request, "param") else False)
 
 
 def test_add_blocker_uses_blocker(csg, blocker):
@@ -93,3 +105,33 @@ def test_multiple_blockers(csg):
     assert blocker1.call_count == 1
     assert blocker2.call_count == 1
     assert len(space) == 2
+
+
+@pytest.mark.parametrize(
+    "cmp_filter,expected_len", [(True, 1), (False, 0)], indirect=["cmp_filter"]
+)
+def test_single_filter(csg, cmp_filter, expected_len):
+    csg.add_blocker(
+        _new_blocker(1, [Block("block1").extend([_ref(1, "a"), _ref(2, "a")])])
+    )
+    csg.add_filter(cmp_filter)
+
+    space = csg()
+
+    assert cmp_filter.call_count == 1
+    assert len(space) == expected_len
+
+
+@pytest.mark.parametrize(
+    "filter1,filter2", [(True, False), (False, True), (False, False)]
+)
+def test_filters_act_cumulatively(csg, filter1, filter2):
+    csg.add_blocker(
+        _new_blocker(1, [Block("block1").extend([_ref(1, "a"), _ref(2, "a")])])
+    )
+    csg.add_filter(_new_filter(filter1))
+    csg.add_filter(_new_filter(filter2))
+
+    space = csg()
+
+    assert len(space) == 0
