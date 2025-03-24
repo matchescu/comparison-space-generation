@@ -75,7 +75,7 @@ def test_add_blocker_uses_blocker(csg, blocker):
     ],
 )
 def test_single_blocker_single_block(csg, blocker, block_refs, expected_ids):
-    blocker.return_value = [Block("test-key").extend(block_refs)]
+    blocker.return_value = [Block("test-key").extend(r.id for r in block_refs)]
     csg.add_blocker(blocker)
 
     space = csg()
@@ -85,8 +85,8 @@ def test_single_blocker_single_block(csg, blocker, block_refs, expected_ids):
 
 def test_single_blocker_multiple_blocks(csg, blocker):
     blocker.return_value = [
-        Block("block1").extend([_ref(1, "a"), _ref(2, "a")]),
-        Block("block2").extend([_ref(1, "b"), _ref(2, "b")]),
+        Block("block1").extend([_id(1, "a"), _id(2, "a")]),
+        Block("block2").extend([_id(1, "b"), _id(2, "b")]),
     ]
     csg.add_blocker(blocker)
 
@@ -96,8 +96,8 @@ def test_single_blocker_multiple_blocks(csg, blocker):
 
 
 def test_multiple_blockers(csg):
-    blocker1 = _new_blocker(1, [Block("block1").extend([_ref(1, "a"), _ref(2, "a")])])
-    blocker2 = _new_blocker(1, [Block("block2").extend([_ref(1, "b"), _ref(2, "b")])])
+    blocker1 = _new_blocker(1, [Block("block1").extend([_id(1, "a"), _id(2, "a")])])
+    blocker2 = _new_blocker(1, [Block("block2").extend([_id(1, "b"), _id(2, "b")])])
     csg.add_blocker(blocker1).add_blocker(blocker2)
 
     space = csg()
@@ -112,7 +112,7 @@ def test_multiple_blockers(csg):
 )
 def test_single_filter(csg, cmp_filter, expected_len):
     csg.add_blocker(
-        _new_blocker(1, [Block("block1").extend([_ref(1, "a"), _ref(2, "a")])])
+        _new_blocker(1, [Block("block1").extend([_id(1, "a"), _id(2, "a")])])
     )
     csg.add_filter(cmp_filter)
 
@@ -127,7 +127,7 @@ def test_single_filter(csg, cmp_filter, expected_len):
 )
 def test_filters_act_cumulatively(csg, filter1, filter2):
     csg.add_blocker(
-        _new_blocker(1, [Block("block1").extend([_ref(1, "a"), _ref(2, "a")])])
+        _new_blocker(1, [Block("block1").extend([_id(1, "a"), _id(2, "a")])])
     )
     csg.add_filter(_new_filter(filter1))
     csg.add_filter(_new_filter(filter2))

@@ -1,44 +1,49 @@
+from collections.abc import Iterable
+from typing import Generator, cast
+
 from datasketch import MinHash, MinHashLSH
 
+from matchescu.blocking import Block
+from matchescu.blocking._blocker import Blocker
+from matchescu.blocking._tokenization import tokenize_reference
+from matchescu.reference_store.id_table import IdTable
+from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
-class LSHBlocking:
-    def __init__(self, num_perm=128, threshold=0.5, bands=16):
-        self.num_perm = num_perm  # Number of permutations for MinHash
-        self.threshold = threshold  # Similarity threshold for LSH
-        self.bands = bands  # Number of bands for LSH bucketing
-        self.lsh = MinHashLSH(threshold=threshold, num_perm=num_perm)
-        self.entities = {}  # Store entity mappings
 
-    def _compute_minhash(self, tokens):
+class LSHBlocker(Blocker):
+    def __init__(
+        self,
+        id_table: IdTable,
+        threshold: float = 0.5,
+        num_perm: int = 128,
+        bands: int = 16,
+    ):
+        super().__init__(id_table)
+        self.__sim_threshold = threshold  # Similarity threshold for LSH
+        self.__num_perm = num_perm  # Number of permutations for MinHash
+        self.__num_bands = bands  # Number of bands for LSH bucketing
+        self.__lsh = MinHashLSH(
+            threshold=self.__sim_threshold, num_perm=self.__num_perm
+        )
+
+    def __compute_minhash(self, tokens: Iterable[str]) -> MinHash:
         """Compute MinHash signature for a set of tokens."""
-        m = MinHash(num_perm=self.num_perm)
-        for token in tokens:
-            m.update(token.encode("utf8"))
+        m = MinHash(num_perm=self.__num_perm)
+        m.update_batch(map(lambda t: t.encode("utf-8"), tokens))
         return m
 
-    def add_entity(self, entity_id, tokens):
+    def __add_entity(self, ref: EntityReference) -> None:
         """Add an entity with tokenized attributes to LSH."""
-        minhash = self._compute_minhash(tokens)
-        self.lsh.insert(entity_id, minhash)
-        self.entities[entity_id] = tokens  # Store for reference
+        minhash = self.__compute_minhash(tokenize_reference(ref))
+        self.__lsh.insert(ref.id, minhash)
 
-    def get_candidate_pairs(self):
-        """Find candidate pairs that fall into the same LSH bucket."""
-        candidate_pairs = set()
-        for entity_id in self.entities:
-            minhash = self._compute_minhash(self.entities[entity_id])
-            neighbors = self.lsh.query(minhash)
-            for neighbor in neighbors:
-                if entity_id < neighbor:  # Ensure unique pairs (A, B) where A < B
-                    candidate_pairs.add((entity_id, neighbor))
-        return candidate_pairs
+    def __call__(self) -> Generator[Block, None, None]:
+        for ref in self._id_table:
+            self.__add_entity(ref)
 
-
-# Example usage:
-lsh_blocker = LSHBlocking(num_perm=128, threshold=0.5, bands=16)
-lsh_blocker.add_entity("E1", {"alice", "data", "scientist"})
-lsh_blocker.add_entity("E2", {"alice", "machine", "learning"})
-lsh_blocker.add_entity("E3", {"bob", "software", "developer"})
-lsh_blocker.add_entity("E4", {"alice", "data", "scientist"})
-
-print("Candidate Pairs:", lsh_blocker.get_candidate_pairs())
+        for ref in self._id_table:
+            block_key = self.__compute_minhash(tokenize_reference(ref))
+            neighbor_ids = self.__lsh.query(block_key)
+            yield Block(key=block_key).extend(
+                cast(EntityReferenceIdentifier, x) for x in neighbor_ids
+            )

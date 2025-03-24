@@ -39,13 +39,13 @@ def test_block_init_raises_value_error(block_key):
 
 
 def test_block_add_ref(block, default_entity_reference):
-    block.append(default_entity_reference)
+    block.append(default_entity_reference.id)
 
     assert list(block) == [default_entity_reference.id]
 
 
 def test_block_add_multiple_refs(block):
-    block.extend(_ref(i) for i in range(10))
+    block.extend(_id(i) for i in range(10))
 
     assert list(block) == [
         EntityReferenceIdentifier(i, DEFAULT_SOURCE_NAME) for i in range(10)
@@ -68,7 +68,7 @@ def test_block_add_multiple_refs(block):
     ],
 )
 def test_candidate_pairs_single_source(block, refs, expected):
-    block.extend(refs)
+    block.extend(r.id for r in refs)
 
     actual = list(block.candidate_pairs())
 
@@ -95,7 +95,7 @@ def test_candidate_pairs_single_source(block, refs, expected):
     ],
 )
 def test_candidate_pairs_two_sources(block, refs, expected):
-    block.extend(refs)
+    block.extend(r.id for r in refs)
 
     actual = list(block.candidate_pairs())
 
@@ -112,6 +112,6 @@ def test_candidate_pairs_two_sources(block, refs, expected):
     ],
 )
 def test_block_len(block, refs, expected):
-    block.extend(refs)
+    block.extend(r.id for r in refs)
 
     assert block.count_sources() == expected

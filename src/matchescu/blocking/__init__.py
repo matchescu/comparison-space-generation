@@ -1,5 +1,6 @@
 from matchescu.blocking._block import Block
-from matchescu.blocking._blocker import Blocker, TfIdfBlocker
+from matchescu.blocking._blocker import Blocker
+from matchescu.blocking._lsh import LSHBlocker
+from matchescu.blocking._tf_idf import TfIdfBlocker
 
-
-__all__ = ["Block", "Blocker", "TfIdfBlocker"]
+__all__ = ["Block", "Blocker", "LSHBlocker", "TfIdfBlocker"]
