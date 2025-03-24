@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "matchescu-comparison-space-generation"
-version = "0.3.1"
+version = "0.4.0"
 description = ""
 authors = ["Andrei Olar <andrei.olar@samlex.ro>"]
 readme = "README.md"
@@ -13,6 +13,7 @@ matchescu-reference-store = "^0.6.1"
 stopwords = "^1.0.1"
 scikit-learn = "^1.6.1"
 numpy = "^2.2.4"
+datasketch = "^1.6.5"
 
 
 [tool.poetry.group.dev.dependencies]
