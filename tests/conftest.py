@@ -11,7 +11,7 @@ from matchescu.extraction import (
     single_record,
 )
 from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
-from matchescu.typing import Record, DataSource, EntityReferenceIdentifier, EntityReferenceIdFactory
+from matchescu.typing import Record, DataSource, EntityReferenceIdentifier
 
 
 @pytest.fixture(scope="session")
