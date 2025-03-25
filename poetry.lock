@@ -122,46 +122,46 @@ files = [
 
 [[package]]
 name = "matchescu-base"
-version = "0.14.0"
-description = ""
+version = "0.16.1"
+description = "Base abstract data types for Entity Resolution"
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main", "dev"]
 files = [
-    {file = "matchescu_base-0.14.0-py3-none-any.whl", hash = "sha256:6183eb935004f492885527f3db91224e9c608e7c98333659dc9de257f3b30d14"},
-    {file = "matchescu_base-0.14.0.tar.gz", hash = "sha256:541a416a85647d26670ec5f3f02d772b6d3e857372156ceebc96c6d0786c3a42"},
+    {file = "matchescu_base-0.16.1-py3-none-any.whl", hash = "sha256:04febcc82b42ae72153cafc70f96805a827654ec2bb9765aa261d78b44bd7b63"},
+    {file = "matchescu_base-0.16.1.tar.gz", hash = "sha256:b07b3f1efa32e6c4415ed5dd5871e00414ecc6e15a5440e1e0de6def8ffdd1ff"},
 ]
 
 [[package]]
 name = "matchescu-reference-extraction"
-version = "0.4.0"
+version = "0.5.1"
 description = "Extract references from a multitude of data sources"
 optional = false
 python-versions = "<4.0,>=3.12"
 groups = ["dev"]
 files = [
-    {file = "matchescu_reference_extraction-0.4.0-py3-none-any.whl", hash = "sha256:ce22d5a5919063a49e15694b5c4efaf0666a77e615d50f2e3813a44a19836c9e"},
-    {file = "matchescu_reference_extraction-0.4.0.tar.gz", hash = "sha256:b23af7395e4246adab15d676f1d9751ea21b2bcadd5b3fb0267096210c77e074"},
+    {file = "matchescu_reference_extraction-0.5.1-py3-none-any.whl", hash = "sha256:315193b3b04b304a7332d16f7e50ae93202334502a3c91cc9b6b96306b44b03d"},
+    {file = "matchescu_reference_extraction-0.5.1.tar.gz", hash = "sha256:103a22dfce69d65509ae50ca05a2e63d92befa675df2871c2ab6501df0377055"},
 ]
 
 [package.dependencies]
-matchescu-base = ">=0.14.0,<0.15.0"
+matchescu-base = ">=0.16.1,<0.17.0"
 polars = ">=1.25.2,<2.0.0"
 
 [[package]]
 name = "matchescu-reference-store"
-version = "0.6.1"
-description = "Storage options for entity references"
+version = "0.6.2"
+description = "Entity reference storage data types and APIs"
 optional = false
 python-versions = "<4.0,>=3.12"
 groups = ["main"]
 files = [
-    {file = "matchescu_reference_store-0.6.1-py3-none-any.whl", hash = "sha256:dfe010175e7bc15a5683b0ba674b39af3aecdefa088bbdbf08fed47179663c76"},
-    {file = "matchescu_reference_store-0.6.1.tar.gz", hash = "sha256:ce68ed24f8414b099224d3bc384e47e80de88cace6e9b5302be7ca9a57585c5d"},
+    {file = "matchescu_reference_store-0.6.2-py3-none-any.whl", hash = "sha256:342a9d0670aa1ca61196b9e0538c23d0e9f5c3478e9e8a2e41212c618d2f7d99"},
+    {file = "matchescu_reference_store-0.6.2.tar.gz", hash = "sha256:8016b38ba6af4f829d75d3277712d3b5b1e21d3348414f008b716aa0035d882c"},
 ]
 
 [package.dependencies]
-matchescu-base = ">=0.14.0,<0.15.0"
+matchescu-base = ">=0.16.1,<0.17.0"
 
 [[package]]
 name = "mypy"
@@ -601,4 +601,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "7276d0a02782b7c4782311ce014f68bb5e4797cb5709130f1accc832eb1758fa"
+content-hash = "e061f844bc81bbb22b786f6c198db9ccaf77060a0279f0d3ef4d48adc34dc4fb"

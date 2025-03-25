@@ -7,12 +7,11 @@ import pytest
 from matchescu.data_sources import CsvDataSource
 from matchescu.extraction import (
     Traits,
-    RecordIdAdapter,
     RecordExtraction,
     single_record,
 )
 from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
-from matchescu.typing import Record, DataSource, EntityReferenceIdentifier
+from matchescu.typing import Record, DataSource, EntityReferenceIdentifier, EntityReferenceIdFactory
 
 
 @pytest.fixture(scope="session")
@@ -59,18 +58,16 @@ def abt_buy_gt(
 
 @pytest.fixture
 def id_factory():
-    def _(r: Record, source: str) -> EntityReferenceIdentifier:
-        return EntityReferenceIdentifier(r[0], source)
-
-    return _
+    return lambda rows, source: EntityReferenceIdentifier(rows[0][0], source)
 
 
 @pytest.fixture
 def abt_buy_id_table(abt, buy, id_factory):
     result = InMemoryIdTable()
     for source in [abt, buy]:
-        adapter = RecordIdAdapter(partial(id_factory, source=source.name))
-        refextract = RecordExtraction(source, adapter, single_record)
+        refextract = RecordExtraction(
+            source, partial(id_factory, source=source.name), single_record
+        )
         for ref in refextract():
             result.put(ref)
     return result
