@@ -122,46 +122,49 @@ files = [
 
 [[package]]
 name = "matchescu-base"
-version = "0.16.1"
+version = "0.17.0"
 description = "Base abstract data types for Entity Resolution"
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main", "dev"]
 files = [
-    {file = "matchescu_base-0.16.1-py3-none-any.whl", hash = "sha256:04febcc82b42ae72153cafc70f96805a827654ec2bb9765aa261d78b44bd7b63"},
-    {file = "matchescu_base-0.16.1.tar.gz", hash = "sha256:b07b3f1efa32e6c4415ed5dd5871e00414ecc6e15a5440e1e0de6def8ffdd1ff"},
+    {file = "matchescu_base-0.17.0-py3-none-any.whl", hash = "sha256:07fb87feefa9de39a9e7d05c43834eb7528aeb864917d2206c890ba1f7b16994"},
+    {file = "matchescu_base-0.17.0.tar.gz", hash = "sha256:150ae2e98b0cebd74667e9b0b7d8938d47a6fadac148c19905c07ae76e9e5fa0"},
 ]
+
+[package.dependencies]
+networkx = ">=3.4.2,<4.0.0"
 
 [[package]]
 name = "matchescu-reference-extraction"
-version = "0.5.1"
+version = "0.6.0"
 description = "Extract references from a multitude of data sources"
 optional = false
 python-versions = "<4.0,>=3.12"
 groups = ["dev"]
 files = [
-    {file = "matchescu_reference_extraction-0.5.1-py3-none-any.whl", hash = "sha256:315193b3b04b304a7332d16f7e50ae93202334502a3c91cc9b6b96306b44b03d"},
-    {file = "matchescu_reference_extraction-0.5.1.tar.gz", hash = "sha256:103a22dfce69d65509ae50ca05a2e63d92befa675df2871c2ab6501df0377055"},
+    {file = "matchescu_reference_extraction-0.6.0-py3-none-any.whl", hash = "sha256:04e195b6a364d5724a9a6fd442bf370466a7835574ebdc42c0254cb54e49194a"},
+    {file = "matchescu_reference_extraction-0.6.0.tar.gz", hash = "sha256:7db6f7944a5c825eb2a7d15ada2f404fa2253a37bfbffa46f625fc226257bf1c"},
 ]
 
 [package.dependencies]
-matchescu-base = ">=0.16.1,<0.17.0"
+matchescu-base = ">=0.17.0,<0.18.0"
 polars = ">=1.25.2,<2.0.0"
 
 [[package]]
 name = "matchescu-reference-store"
-version = "0.6.2"
+version = "0.7.0"
 description = "Entity reference storage data types and APIs"
 optional = false
 python-versions = "<4.0,>=3.12"
 groups = ["main"]
 files = [
-    {file = "matchescu_reference_store-0.6.2-py3-none-any.whl", hash = "sha256:342a9d0670aa1ca61196b9e0538c23d0e9f5c3478e9e8a2e41212c618d2f7d99"},
-    {file = "matchescu_reference_store-0.6.2.tar.gz", hash = "sha256:8016b38ba6af4f829d75d3277712d3b5b1e21d3348414f008b716aa0035d882c"},
+    {file = "matchescu_reference_store-0.7.0-py3-none-any.whl", hash = "sha256:e22ae8f67bd3de916c016edbd32820fc31dbfd1458b4c0f19769241fa54a4c73"},
+    {file = "matchescu_reference_store-0.7.0.tar.gz", hash = "sha256:5b06128678ae320e0984c07e75499a4b27388999a2bd18080028325b02b62a7f"},
 ]
 
 [package.dependencies]
-matchescu-base = ">=0.16.1,<0.17.0"
+matchescu-base = ">=0.17.0,<0.18.0"
 
 [[package]]
 name = "mypy"
@@ -227,6 +230,26 @@ files = [
     {file = "mypy_extensions-1.0.0-py3-none-any.whl", hash = "sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d"},
     {file = "mypy_extensions-1.0.0.tar.gz", hash = "sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782"},
 ]
+
+[[package]]
+name = "networkx"
+version = "3.4.2"
+description = "Python package for creating and manipulating graphs and networks"
+optional = false
+python-versions = ">=3.10"
+groups = ["main", "dev"]
+files = [
+    {file = "networkx-3.4.2-py3-none-any.whl", hash = "sha256:df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f"},
+    {file = "networkx-3.4.2.tar.gz", hash = "sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1"},
+]
+
+[package.extras]
+default = ["matplotlib (>=3.7)", "numpy (>=1.24)", "pandas (>=2.0)", "scipy (>=1.10,!=1.11.0,!=1.11.1)"]
+developer = ["changelist (==0.5)", "mypy (>=1.1)", "pre-commit (>=3.2)", "rtoml"]
+doc = ["intersphinx-registry", "myst-nb (>=1.1)", "numpydoc (>=1.8.0)", "pillow (>=9.4)", "pydata-sphinx-theme (>=0.15)", "sphinx (>=7.3)", "sphinx-gallery (>=0.16)", "texext (>=0.6.7)"]
+example = ["cairocffi (>=1.7)", "contextily (>=1.6)", "igraph (>=0.11)", "momepy (>=0.7.2)", "osmnx (>=1.9)", "scikit-learn (>=1.5)", "seaborn (>=0.13)"]
+extra = ["lxml (>=4.6)", "pydot (>=3.0.1)", "pygraphviz (>=1.14)", "sympy (>=1.10)"]
+test = ["pytest (>=7.2)", "pytest-cov (>=4.0)"]
 
 [[package]]
 name = "numpy"
@@ -352,19 +375,19 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "polars"
-version = "1.25.2"
+version = "1.26.0"
 description = "Blazingly fast DataFrame library"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "polars-1.25.2-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:59f2a34520ea4307a22e18b832310f8045a8a348606ca99ae785499b31eb4170"},
-    {file = "polars-1.25.2-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:e9fe45bdc2327c2e2b64e8849a992b6d3bd4a7e7848b8a7a3a439cca9674dc87"},
-    {file = "polars-1.25.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f7fcbb4f476784384ccda48757fca4e8c2e2c5a0a3aef3717aaf56aee4e30e09"},
-    {file = "polars-1.25.2-cp39-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:9dd91885c9ee5ffad8725c8591f73fb7bd2632c740277ee641f0453176b3d4b8"},
-    {file = "polars-1.25.2-cp39-abi3-win_amd64.whl", hash = "sha256:a547796643b9a56cb2959be87d7cb87ff80a5c8ae9367f32fe1ad717039e9afc"},
-    {file = "polars-1.25.2-cp39-abi3-win_arm64.whl", hash = "sha256:a2488e9d4b67bf47b18088f7264999180559e6ec2637ed11f9d0d4f98a74a37c"},
-    {file = "polars-1.25.2.tar.gz", hash = "sha256:c6bd9b1b17c86e49bcf8aac44d2238b77e414d7df890afc3924812a5c989a4fe"},
+    {file = "polars-1.26.0-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:2afefcd356608981b2e15d46df9ddaa6e77f36095ebeb73c3261e198bd51c925"},
+    {file = "polars-1.26.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:587eb3c5000423eb20be998f523e605ddba0d3c598ba4a7e2a4d0b92b1fd2a7e"},
+    {file = "polars-1.26.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:66c30f4b7e060c2e7f3a45d6ac94ab3b179831a2f1e629401bf7912d54311529"},
+    {file = "polars-1.26.0-cp39-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:110d6987d37ae954a5ef16d739fb717df9d39b144790d12d98fb3e72ed35621c"},
+    {file = "polars-1.26.0-cp39-abi3-win_amd64.whl", hash = "sha256:189a58aaf393003515fa6d83e2dea815a2b448265f2007a926274ed12672583c"},
+    {file = "polars-1.26.0-cp39-abi3-win_arm64.whl", hash = "sha256:58db2dce39cad5f8fc8e8c5c923a250eb21eff4146b03514d570d1c205a4874c"},
+    {file = "polars-1.26.0.tar.gz", hash = "sha256:b5492d38e5ec2ae6a8853833c5a31549194a361b901134fc5f2f57b49bd563ea"},
 ]
 
 [package.extras]
@@ -601,4 +624,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "e061f844bc81bbb22b786f6c198db9ccaf77060a0279f0d3ef4d48adc34dc4fb"
+content-hash = "4e7a674be6a523ff8fd1a8c0ef72cb042e43226392095977e67118b9bbd58a41"
