@@ -5,8 +5,7 @@ import pytest
 from matchescu.blocking import Blocker, Block
 from matchescu.comparison_filtering import ComparisonFilter
 from matchescu.csg._binary_csg import BinaryComparisonSpaceGenerator
-from matchescu.references import EntityReference
-from matchescu.typing import EntityReferenceIdentifier
+from matchescu.typing import EntityReferenceIdentifier, EntityReference
 
 
 def _id(label, source):
