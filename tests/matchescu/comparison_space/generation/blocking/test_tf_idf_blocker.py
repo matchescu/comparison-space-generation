@@ -1,6 +1,6 @@
 import pytest
 
-from matchescu.blocking import TfIdfBlocker
+from matchescu.comparison_space.generation.blocking._tf_idf import TfIdfBlocker
 
 
 @pytest.fixture

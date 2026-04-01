@@ -2,7 +2,9 @@ import pytest
 
 from matchescu.typing import EntityReferenceIdentifier
 
-from matchescu.comparison_filtering import JaccardSimilarityFilter
+from matchescu.comparison_space.generation.filtering._filters import (
+    JaccardSimilarityFilter,
+)
 
 
 def _id(label: int, source: str):

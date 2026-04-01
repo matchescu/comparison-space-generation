@@ -2,9 +2,11 @@ from typing import Generator
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from matchescu.blocking import Blocker, Block
-from matchescu.blocking._tokenization import tokenize_reference
 from matchescu.reference_store.id_table._protocol import IdTable
+
+from ._block import Block
+from ._blocker import Blocker
+from ._tokenization import tokenize_reference
 
 
 class TfIdfBlocker(Blocker):

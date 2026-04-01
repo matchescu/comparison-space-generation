@@ -1,13 +1,14 @@
 import itertools
 from typing import Generator
 
-from matchescu.blocking import Blocker, Block
-from matchescu.comparison_filtering import ComparisonFilter
 from matchescu.reference_store.comparison_space import (
     BinaryComparisonSpace,
     InMemoryComparisonSpace,
 )
 from matchescu.typing import EntityReferenceIdentifier
+
+from .blocking import Block, Blocker
+from .filtering import ComparisonFilter
 
 
 class BinaryComparisonSpaceGenerator:

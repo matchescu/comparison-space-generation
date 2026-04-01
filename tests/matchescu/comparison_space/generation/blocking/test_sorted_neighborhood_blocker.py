@@ -1,6 +1,8 @@
 import pytest
 
-from matchescu.blocking._sorted_neighborhood import SortedNeighborhoodBlocker
+from matchescu.comparison_space.generation.blocking._sorted_neighborhood import (
+    SortedNeighborhoodBlocker,
+)
 
 
 @pytest.fixture

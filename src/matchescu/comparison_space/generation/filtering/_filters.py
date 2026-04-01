@@ -1,9 +1,10 @@
 import itertools
 from abc import ABCMeta, abstractmethod
 
-from matchescu.blocking._tokenization import tokenize_reference
 from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
 from matchescu.typing import EntityReferenceIdentifier, EntityReference
+
+from ..blocking._tokenization import tokenize_reference
 
 
 class ComparisonFilter(metaclass=ABCMeta):

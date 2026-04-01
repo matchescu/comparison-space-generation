@@ -2,10 +2,13 @@ from unittest.mock import MagicMock, call
 
 import pytest
 
-from matchescu.blocking import Blocker, Block
-from matchescu.comparison_filtering import ComparisonFilter
-from matchescu.csg._binary_csg import BinaryComparisonSpaceGenerator
 from matchescu.typing import EntityReferenceIdentifier, EntityReference
+from matchescu.comparison_space.generation.blocking import Blocker, Block
+from matchescu.comparison_space.generation.filtering import ComparisonFilter
+
+from matchescu.comparison_space.generation._binary_csg import (
+    BinaryComparisonSpaceGenerator,
+)
 
 
 def _id(label, source):

@@ -3,11 +3,12 @@ from typing import Generator, cast
 
 from datasketch import MinHash, MinHashLSH
 
-from matchescu.blocking import Block
-from matchescu.blocking._blocker import Blocker
-from matchescu.blocking._tokenization import tokenize_reference
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReference, EntityReferenceIdentifier
+
+from ._block import Block
+from ._blocker import Blocker
+from ._tokenization import tokenize_reference
 
 
 class LSHBlocker(Blocker):

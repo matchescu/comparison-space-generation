@@ -1,6 +1,6 @@
 import pytest
 
-from matchescu.blocking._lsh import LSHBlocker
+from matchescu.comparison_space.generation.blocking._lsh import LSHBlocker
 
 
 @pytest.fixture

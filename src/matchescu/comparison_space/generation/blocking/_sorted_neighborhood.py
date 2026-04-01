@@ -1,10 +1,10 @@
 from typing import Generator
 
-from matchescu.blocking import Block
-from matchescu.blocking._blocker import Blocker
-from matchescu.blocking._tokenization import tokenize_reference
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReference
+from ._block import Block
+from ._blocker import Blocker
+from ._tokenization import tokenize_reference
 
 
 class SortedNeighborhoodBlocker(Blocker):

@@ -3,7 +3,7 @@ from typing import Generator
 
 from matchescu.reference_store.id_table import IdTable
 
-from matchescu.blocking._block import Block
+from ._block import Block
 
 
 class Blocker(metaclass=ABCMeta):
