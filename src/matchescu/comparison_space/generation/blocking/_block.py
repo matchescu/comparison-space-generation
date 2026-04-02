@@ -34,12 +34,9 @@ class Block:
     def candidate_pairs(
         self, generate_deduplication_pairs: bool = True
     ) -> Iterator[tuple[EntityReferenceIdentifier, EntityReferenceIdentifier]]:
-        by_source = {
-            source: list(ids)
-            for source, ids in itertools.groupby(
-                self.ref_ids, key=lambda ref_id: ref_id.source
-            )
-        }
+        by_source = {}
+        for ref_id in self.ref_ids:
+            by_source.setdefault(ref_id.source, []).append(ref_id)
         n_sources = len(by_source)
         if n_sources < 1:
             yield from ()
