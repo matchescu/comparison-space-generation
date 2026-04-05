@@ -138,14 +138,14 @@ networkx = ">=3.6.1,<4.0.0"
 
 [[package]]
 name = "matchescu-reference-extraction"
-version = "0.8.1"
+version = "0.9.0"
 description = "Extract references from a multitude of data sources"
 optional = false
 python-versions = "!=2.7.*,!=3.0.*,!=3.1.*,!=3.10.*,!=3.11.*,!=3.12.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,!=3.8.*,!=3.9.*,>=3.13"
 groups = ["dev"]
 files = [
-    {file = "matchescu_reference_extraction-0.8.1-py3-none-any.whl", hash = "sha256:ee60469c7fb28779cbf1690a3a2841805d5072a60ac50c30ebf4569306d4aeb4"},
-    {file = "matchescu_reference_extraction-0.8.1.tar.gz", hash = "sha256:8d0a0e2792eec4de86e7c90c66d6e64b6e8643e8a094b63308dfd8c2d216b5d1"},
+    {file = "matchescu_reference_extraction-0.9.0-py3-none-any.whl", hash = "sha256:33dcfcc2ccc253d4482f49907802b4b77c10badbccf263e3007d0b9eaf614454"},
+    {file = "matchescu_reference_extraction-0.9.0.tar.gz", hash = "sha256:7bc8fd96293a67ced56cd912c3f1547f600dd4f93b86a0bd9878df5fd563efbd"},
 ]
 
 [package.dependencies]
@@ -671,4 +671,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "!=3.14.1,^3.13"
-content-hash = "4a36b28d23f372c0632f9d7d0a2d03a41b6915a990fb9c98ead613ff02a10bd4"
+content-hash = "57b8aa5f276905a6049ebfc957e6753dc05c7a92962145e61e14e6b91acdac8d"
