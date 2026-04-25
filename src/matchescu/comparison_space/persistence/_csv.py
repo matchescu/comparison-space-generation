@@ -51,13 +51,13 @@ class CsvPersistence(ComparisonSpaceReader, ComparisonSpaceWriter):
         for row in df.iter_rows(named=False):
             left_id = RefId(
                 label=row[left_id_idx],
-                source=(
+                source=str(
                     row[left_source_idx] if left_source_idx else params.source_fallback
                 ),
             )
             right_id = RefId(
                 label=row[right_id_idx],
-                source=(
+                source=str(
                     row[right_source_idx]
                     if right_source_idx
                     else params.source_fallback
@@ -71,9 +71,9 @@ class CsvPersistence(ComparisonSpaceReader, ComparisonSpaceWriter):
             [
                 {
                     "left_id": left.label,
-                    "left_source": left.source,
+                    "left_source": str(left.source),
                     "right_id": right.label,
-                    "right_source": right.source,
+                    "right_source": str(right.source),
                 }
                 for left, right in comparison_space
             ]
