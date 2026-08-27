@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "matchescu-comparison-space-generation"
-version = "0.8.7"
+version = "0.8.8"
 description = ""
 authors = ["Andrei Olar <andrei.olar@samlex.ro>"]
 readme = "README.md"
 packages = [{include = "matchescu", from="src"}]
 
 [tool.poetry.dependencies]
-python = "!=3.14.1,^3.13"
+python = "!=3.14.1,~3.13"
 matchescu-base = "^0.27.1"
 matchescu-reference-store = "^0.9.4"
 stopwords = "^1.0.2"
