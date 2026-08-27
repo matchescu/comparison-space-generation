@@ -1,12 +1,12 @@
-import pytest
 from pathlib import Path
 
-from matchescu.typing import EntityReferenceIdentifier as RefId
+import pytest
 from matchescu.reference_store.comparison_space import InMemoryComparisonSpace
+from matchescu.typing import EntityReferenceIdentifier as RefId
 
 from matchescu.comparison_space.persistence._csv import (
-    CsvPersistence,
     CsvComparisonSpaceFileParams,
+    CsvPersistence,
 )
 
 

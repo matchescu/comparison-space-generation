@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import Generator
+from collections.abc import Generator
 
 from matchescu.reference_store.id_table import IdTable
 

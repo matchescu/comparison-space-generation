@@ -1,5 +1,5 @@
 import itertools
-from typing import Generator
+from collections.abc import Generator
 
 from matchescu.reference_store.comparison_space import (
     BinaryComparisonSpace,
@@ -47,7 +47,7 @@ class BinaryComparisonSpaceGenerator:
         )
 
     def __matches_all_filters(self, ids: tuple) -> bool:
-        return all(map(lambda f: f(*ids), self._filters))
+        return all(f(*ids) for f in self._filters)
 
     def __call__(self) -> BinaryComparisonSpace:
         comparison_space = InMemoryComparisonSpace()

@@ -1,9 +1,7 @@
 import pytest
-
-from matchescu.typing import EntityReferenceIdentifier, EntityReference
+from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
 from matchescu.comparison_space.generation.blocking import Block
-
 
 DEFAULT_SOURCE_NAME = "test"
 DEFAULT_BLOCK_KEY = "test block"

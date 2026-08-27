@@ -1,7 +1,8 @@
-from typing import Generator
+from collections.abc import Generator
 
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReference
+
 from ._block import Block
 from ._blocker import Blocker
 from ._tokenization import tokenize_reference
@@ -13,9 +14,7 @@ class SortedNeighborhoodBlocker(Blocker):
         self.__window_size = window_size
 
     def __sorted_references(self) -> list[tuple[str, EntityReference]]:
-        tokenized_refs = list(
-            map(lambda r: (" ".join(tokenize_reference(r)), r), self._id_table)
-        )
+        tokenized_refs = [(" ".join(tokenize_reference(r)), r) for r in self._id_table]
         tokenized_refs.sort(key=lambda t: t[0])
         return tokenized_refs
 

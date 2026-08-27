@@ -1,8 +1,7 @@
-from typing import Generator
-
-from sklearn.feature_extraction.text import TfidfVectorizer
+from collections.abc import Generator
 
 from matchescu.reference_store.id_table._protocol import IdTable
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 from ._block import Block
 from ._blocker import Blocker

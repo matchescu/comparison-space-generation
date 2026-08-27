@@ -11,7 +11,7 @@ class BlockingMetrics:
     reduction_ratio: float
 
 
-class BinaryComparisonSpaceEvaluator(object):
+class BinaryComparisonSpaceEvaluator:
     def __init__(
         self,
         gt: set[tuple[EntityReferenceIdentifier, EntityReferenceIdentifier]],

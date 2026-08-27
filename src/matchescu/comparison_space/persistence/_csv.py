@@ -3,13 +3,12 @@ from os import PathLike
 from pathlib import Path
 
 import polars as pl
-from polars.exceptions import NoDataError
-
-from matchescu.typing import EntityReferenceIdentifier as RefId
 from matchescu.reference_store.comparison_space import (
     BinaryComparisonSpace,
     InMemoryComparisonSpace,
 )
+from matchescu.typing import EntityReferenceIdentifier as RefId
+from polars.exceptions import NoDataError
 
 from ._base import ComparisonSpaceReader, ComparisonSpaceWriter
 

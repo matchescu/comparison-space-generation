@@ -1,5 +1,4 @@
 import pytest
-
 from matchescu.typing import EntityReferenceIdentifier
 
 from matchescu.comparison_space.generation.filtering._filters import (

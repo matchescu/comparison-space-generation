@@ -1,9 +1,10 @@
+from collections.abc import Generator, Iterable
 from random import shuffle
-from typing import Generator, Iterable
 
-from matchescu.comparison_space.generation.blocking import Blocker, Block
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReferenceIdentifier as RefId
+
+from matchescu.comparison_space.generation.blocking import Block, Blocker
 
 
 class GroundTruthBlocker(Blocker):

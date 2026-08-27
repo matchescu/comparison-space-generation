@@ -10,5 +10,5 @@ def lsh_blocker(abt_buy_id_table):
 
 def test_abt_buy_blocking_no_data_loss(lsh_blocker, abt, buy):
     blocks = list(lsh_blocker())
-    all_ids = set(identifier for block in blocks for identifier in block)
+    all_ids = {identifier for block in blocks for identifier in block}
     assert len(all_ids) == len(abt) + len(buy)

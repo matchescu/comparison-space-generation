@@ -2,11 +2,10 @@ from typing import cast
 from unittest.mock import MagicMock
 
 import pytest
-
-from matchescu.comparison_space.generation.blocking import Block
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReferenceIdentifier as RefId
 
+from matchescu.comparison_space.generation.blocking import Block
 from matchescu.comparison_space.generation.blocking._ground_truth import (
     GroundTruthBlocker,
 )

@@ -2,7 +2,7 @@ import itertools
 from abc import ABCMeta, abstractmethod
 
 from matchescu.reference_store.id_table._in_memory import InMemoryIdTable
-from matchescu.typing import EntityReferenceIdentifier, EntityReference
+from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
 from ..blocking._tokenization import tokenize_reference
 
@@ -14,7 +14,7 @@ class ComparisonFilter(metaclass=ABCMeta):
 
 
 def is_cross_source_comparison(*ref_ids: EntityReferenceIdentifier) -> bool:
-    sources = set(ref_id.source for ref_id in ref_ids)
+    sources = {ref_id.source for ref_id in ref_ids}
     return len(sources) > 1
 
 

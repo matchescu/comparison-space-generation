@@ -1,8 +1,7 @@
 import re
 
-from stopwords import clean as remove_stopwords
-
 from matchescu.typing import EntityReference
+from stopwords import clean as remove_stopwords
 
 __TOKEN_RE = re.compile(r"[\d\W_]+")
 

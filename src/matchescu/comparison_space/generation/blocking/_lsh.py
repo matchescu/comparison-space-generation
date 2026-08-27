@@ -1,8 +1,7 @@
-from collections.abc import Iterable
-from typing import Generator, cast
+from collections.abc import Generator, Iterable
+from typing import cast
 
 from datasketch import MinHash, MinHashLSH
-
 from matchescu.reference_store.id_table import IdTable
 from matchescu.typing import EntityReference, EntityReferenceIdentifier
 
@@ -30,7 +29,7 @@ class LSHBlocker(Blocker):
     def __compute_minhash(self, tokens: Iterable[str]) -> MinHash:
         """Compute MinHash signature for a set of tokens."""
         m = MinHash(num_perm=self.__num_perm)
-        m.update_batch(map(lambda t: t.encode("utf-8"), tokens))
+        m.update_batch(t.encode("utf-8") for t in tokens)
         return m
 
     def __add_entity(self, ref: EntityReference) -> None:

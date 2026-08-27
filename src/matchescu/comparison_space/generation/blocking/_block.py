@@ -1,6 +1,7 @@
 import itertools
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
-from typing import Any, Iterator, Iterable
+from typing import Any
 
 from matchescu.typing import EntityReferenceIdentifier
 
@@ -28,7 +29,7 @@ class Block:
         return self
 
     def count_sources(self) -> int:
-        sources = set(ref_id.source for ref_id in self.ref_ids)
+        sources = {ref_id.source for ref_id in self.ref_ids}
         return len(sources)
 
     def candidate_pairs(
@@ -41,10 +42,8 @@ class Block:
         if n_sources < 1:
             yield from ()
         elif n_sources < 2 and generate_deduplication_pairs:
-            for pair in itertools.combinations(self.ref_ids, 2):
-                yield pair
+            yield from itertools.combinations(self.ref_ids, 2)
         else:
             sources = list(by_source.keys())
             for a, b in itertools.combinations(sources, 2):
-                for prod in itertools.product(by_source[a], by_source[b]):
-                    yield prod
+                yield from itertools.product(by_source[a], by_source[b])
