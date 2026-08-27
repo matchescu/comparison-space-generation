@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "matchescu-comparison-space-generation"
-version = "0.8.8"
+version = "0.8.9"
 description = ""
 authors = ["Andrei Olar <andrei.olar@samlex.ro>"]
 readme = "README.md"
